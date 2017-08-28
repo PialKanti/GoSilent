@@ -19,6 +19,7 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
@@ -76,14 +77,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showPlacePicker() {
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+       /* PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
         try {
             startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST_CODE);
         } catch (GooglePlayServicesRepairableException e) {
             e.printStackTrace();
         } catch (GooglePlayServicesNotAvailableException e) {
             e.printStackTrace();
-        }
+        }*/
+        Intent intent = new Intent(MainActivity.this, PlacePickerActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -91,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PLACE_PICKER_REQUEST_CODE && data != null) {
             Place place = PlacePicker.getPlace(getApplicationContext(), data);
-            Log.d("check", place.getAddress() + "");
+            LatLng latLng = place.getLatLng();
+            Log.d("check", latLng.latitude + "");
+            Log.d("check", latLng.longitude + "");
             Toast.makeText(getApplicationContext(), place.getAddress() + "", Toast.LENGTH_SHORT).show();
         }
     }
