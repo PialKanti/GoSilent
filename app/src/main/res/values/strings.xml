@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Go Silent</string>
     <string name="place_button_text">Add a new Place</string>
+    <string name="profile_time_text">Choose Time interval</string>
+    <string name="place_picker_text">Pick a place</string>
 </resources>

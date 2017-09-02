@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.go_silent.gosilent.MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <include layout="@layout/toolbar"></include>
 
-        <include layout="@layout/toolbar"></include>
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/FABmenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        fab:menu_colorNormal="@color/colorAccent"
+        android:src="@mipmap/ic_add"
+        fab:menu_fab_size="normal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/FAB_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/deepOrange"
+            android:src="@mipmap/ic_event_white_18dp"
+            fab:fab_label="Location Based Event"
+            fab:fab_size="mini" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rPlaceList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/FAB_silent"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/brown"
+            android:src="@mipmap/ic_volume_off_white_18dp"
+            fab:fab_label="Change to Silent"
+            fab:fab_size="mini" />
+    </com.github.clans.fab.FloatingActionMenu>
 
-            </android.support.v7.widget.RecyclerView>
-
-            <Button
-                android:id="@+id/bPickPlace"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0"
-                android:background="@color/colorPrimary"
-                android:text="@string/place_button_text"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
-    </LinearLayout>
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

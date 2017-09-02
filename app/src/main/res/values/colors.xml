@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#00BCD3</color>
+    <color name="colorPrimaryDark">#0097A7</color>
+    <color name="colorAccent">#FE5252</color>
     <color name="white">#FFFFFF</color>
+    <color name="deepOrange">#FE5722</color>
+    <color name="brown">#795548</color>
+    <color name="mapCircleStrokeColor">#7CAEF1</color>
+    <color name="mapCircleFillColor">#CEDAE9</color>
 </resources>

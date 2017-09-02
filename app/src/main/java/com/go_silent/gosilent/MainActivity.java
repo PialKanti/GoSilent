@@ -12,20 +12,17 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
+import com.github.clans.fab.FloatingActionButton;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
-    private Button mPickPlace;
+    private FloatingActionButton mSilentProfile;
+    private FloatingActionButton mLocationEvent;
     private int PERMISSION_REQUEST_CODE = 100;
     private int PLACE_PICKER_REQUEST_CODE = 101;
 
@@ -47,11 +44,13 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mToolbar);
-        mPickPlace = (Button) findViewById(R.id.bPickPlace);
-        mPickPlace.setOnClickListener(new View.OnClickListener() {
+        mSilentProfile = (FloatingActionButton) findViewById(R.id.FAB_silent);
+        mLocationEvent = (FloatingActionButton) findViewById(R.id.FAB_event);
+        mSilentProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPlacePicker();
+                Intent intent = new Intent(MainActivity.this, ProfileChangerActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -74,30 +73,5 @@ public class MainActivity extends AppCompatActivity {
         String[] requestList = requestPermissionList.toArray(new String[requestPermissionList.size()]);
         if (requestList.length > 0)
             ActivityCompat.requestPermissions(this, requestList, PERMISSION_REQUEST_CODE);
-    }
-
-    public void showPlacePicker() {
-       /* PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-        try {
-            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST_CODE);
-        } catch (GooglePlayServicesRepairableException e) {
-            e.printStackTrace();
-        } catch (GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        }*/
-        Intent intent = new Intent(MainActivity.this, PlacePickerActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PLACE_PICKER_REQUEST_CODE && data != null) {
-            Place place = PlacePicker.getPlace(getApplicationContext(), data);
-            LatLng latLng = place.getLatLng();
-            Log.d("check", latLng.latitude + "");
-            Log.d("check", latLng.longitude + "");
-            Toast.makeText(getApplicationContext(), place.getAddress() + "", Toast.LENGTH_SHORT).show();
-        }
     }
 }
